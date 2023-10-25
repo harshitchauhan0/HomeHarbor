@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "493304482677",
+    "project_id": "homeharbor-9172b",
+    "storage_bucket": "homeharbor-9172b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:493304482677:android:fcfadc14fd7ac96498e13c",
+        "android_client_info": {
+          "package_name": "com.harshit.homeharbor"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEBX2gYWR_5oN9_6SX3GLRSiPjdRrLXDE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

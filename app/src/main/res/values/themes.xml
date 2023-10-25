@@ -1,0 +1,20 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.HomeHarbor" parent="Theme.Material3.DayNight.NoActionBar">
+
+        <item name="colorPrimary">#80EAFF</item>
+        <item name="colorPrimaryVariant">#80EAFF</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
+    </style>
+    <style name="Theme.HomeHarbor.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+
+    <style name="Theme.HomeHarbor.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.HomeHarbor.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+</resources>
