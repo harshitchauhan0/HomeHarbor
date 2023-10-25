@@ -1,5 +1,6 @@
 package com.harshit.homeharbor.models;
 
+
 import java.io.Serializable;
 
 public class MyCartModel implements Serializable {
@@ -23,6 +24,7 @@ public class MyCartModel implements Serializable {
         this.totalQuantity = totalQuantity;
         this.totalPrice = totalPrice;
     }
+
 
     public String getDocumentId() {
         return documentId;
@@ -79,4 +81,5 @@ public class MyCartModel implements Serializable {
     public void setTotalPrice(int totalPrice) {
         this.totalPrice = totalPrice;
     }
+
 }

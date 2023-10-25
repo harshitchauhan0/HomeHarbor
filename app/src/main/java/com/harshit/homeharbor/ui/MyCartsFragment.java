@@ -13,19 +13,22 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.harshit.homeharbor.OrderPlaced;
 import com.harshit.homeharbor.R;
-import com.harshit.homeharbor.activities.PlaceOrderActivity;
 import com.harshit.homeharbor.adapters.MyCartAdapter;
 import com.harshit.homeharbor.models.MyCartModel;
 
-import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class MyCartsFragment extends Fragment {
@@ -53,6 +56,7 @@ public class MyCartsFragment extends Fragment {
 
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
+        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
 
         progressBar = root.findViewById(R.id.progressbar);
         progressBar.setVisibility(View.VISIBLE);
@@ -96,9 +100,35 @@ public class MyCartsFragment extends Fragment {
         buyNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), PlaceOrderActivity.class);
-                intent.putExtra("itemList", (Serializable) cartModelList);
-                startActivity(intent);
+//                Intent intent = new Intent(getContext(), PlaceOrderActivity.class);
+//                intent.putExtra("itemList", (Serializable) cartModelList);
+//                startActivity(intent);
+//                Toast.makeText(getContext(),"You clicked",Toast.LENGTH_SHORT).show();
+                List<MyCartModel> list = cartModelList;
+
+
+                if (list != null && list.size() > 0) {
+                    for (MyCartModel model : list) {
+                        final HashMap<String, Object> cartMap = new HashMap<>();
+
+                        cartMap.put("productName", model.getProductName());
+                        cartMap.put("productPrice", model.getProductPrice());
+                        cartMap.put("currentDate", model.getCurrentDate());
+                        cartMap.put("currentTime", model.getCurrentTime());
+                        cartMap.put("totalQuantity", model.getTotalQuantity());
+                        cartMap.put("totalPrice", model.getTotalPrice());
+
+                        firestore.collection("CurrentUser").document(auth.getCurrentUser().getUid())
+                                .collection("MyOrder").add(cartMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<DocumentReference> task) {
+                                        Toast.makeText(getContext(), "Your Order Has Been Placed", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                    }
+                }
+
+                startActivity(new Intent(getContext(), OrderPlaced.class));
             }
         });
 
@@ -114,7 +144,7 @@ public class MyCartsFragment extends Fragment {
             totalAmount += myCartModel.getTotalPrice();
         }
 
-        overTotalAmount.setText("Total Amount :" + totalAmount);
+        overTotalAmount.setText("Total Amount: " + totalAmount);
     }
 
 }
