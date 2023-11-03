@@ -1,3 +1,13 @@
 # HomeHarbor
-Discover and shop for furniture with ease using our Android app. Developed in Java and powered by Firebase, this app offers a seamless browsing experience. Explore a wide range of furniture options, view detailed product information, and make secure purchases. Enjoy a convenient and personalized shopping experience for all your furniture needs
+Developed in Java
+<BR>
+Firebase used for authentication and backend support
+<BR>
+Utilized navigation and fragment management for seamless user experience
+<BR>
+Features include cart management, order tracking, and category sorting
+<BR>
+Integrated search functionality for user convenience
+<BR>
+Firebase employed for reliable data storage and real-time access to product information.
 ![my_app](https://github.com/harshitchauhan0/HomeHarbor/assets/113535743/2859207f-7340-4500-b5a4-34137b523a19)
